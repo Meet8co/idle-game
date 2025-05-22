@@ -3,33 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Idle Game</title>
+    <title>Epic Idle Game</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="game-container">
-        <h1>Idle Clicker Game</h1>
-        <div class="resources">
-            <p>Points: <span id="points">0</span></p>
-            <p>Points per second: <span id="pps">0</span></p>
-        </div>
-        <button id="clicker">Click Me!</button>
-        <div class="upgrades">
-            <h2>Upgrades</h2>
-            <div class="upgrade" id="upgrade1">
-                <p>Auto Clicker (1 pps)</p>
-                <p>Cost: <span id="upgrade1-cost">10</span> points</p>
-                <p>Owned: <span id="upgrade1-owned">0</span></p>
-                <button onclick="buyUpgrade(1)">Buy</button>
+        <div class="header">
+            <h1><i class="fas fa-infinity"></i> Epic Idle</h1>
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-label">Points:</span>
+                    <span id="points">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Points/s:</span>
+                    <span id="pps">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Prestige:</span>
+                    <span id="prestige">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Multiplier:</span>
+                    <span id="multiplier">1</span>x
+                </div>
             </div>
-            <div class="upgrade" id="upgrade2">
-                <p>Better Clicker (5 pps)</p>
-                <p>Cost: <span id="upgrade2-cost">50</span> points</p>
-                <p>Owned: <span id="upgrade2-owned">0</span></p>
-                <button onclick="buyUpgrade(2)">Buy</button>
+        </div>
+
+        <div class="main-content">
+            <div class="clicker-section">
+                <button id="clicker" class="big-button">
+                    <i class="fas fa-hand-pointer"></i> Click Me!
+                    <div class="click-power">+<span id="click-power">1</span></div>
+                </button>
+                <div class="click-upgrades">
+                    <h2><i class="fas fa-level-up-alt"></i> Click Upgrades</h2>
+                    <div class="upgrades-container" id="click-upgrades"></div>
+                </div>
+            </div>
+
+            <div class="auto-section">
+                <h2><i class="fas fa-robot"></i> Automated Producers</h2>
+                <div class="upgrades-container" id="auto-upgrades"></div>
             </div>
         </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab('upgrades')">Upgrades</button>
+            <button class="tab-button" onclick="openTab('achievements')">Achievements</button>
+            <button class="tab-button" onclick="openTab('prestige')">Prestige</button>
+            <button class="tab-button" onclick="openTab('settings')">Settings</button>
+        </div>
+
+        <div class="tab-content" id="upgrades-tab">
+            <!-- Content loaded dynamically -->
+        </div>
+
+        <div class="tab-content" id="achievements-tab" style="display:none">
+            <div class="achievements-container" id="achievements-list"></div>
+        </div>
+
+        <div class="tab-content" id="prestige-tab" style="display:none">
+            <h2>Prestige System</h2>
+            <p>Reset your progress to gain prestige points and permanent bonuses!</p>
+            <div class="prestige-info">
+                <p>Current Prestige Points: <span id="prestige-points">0</span></p>
+                <p>Next Prestige Bonus: <span id="next-prestige">1</span>x multiplier</p>
+                <button id="prestige-button" class="prestige-button" disabled>Prestige (Requires 1,000 points)</button>
+            </div>
+        </div>
+
+        <div class="tab-content" id="settings-tab" style="display:none">
+            <h2>Settings</h2>
+            <div class="setting">
+                <label>
+                    <input type="checkbox" id="save-toggle" checked> Auto-save game
+                </label>
+            </div>
+            <div class="setting">
+                <label>
+                    <input type="checkbox" id="notifications-toggle" checked> Enable notifications
+                </label>
+            </div>
+            <div class="setting">
+                <button onclick="exportSave()">Export Save</button>
+                <button onclick="importSave()">Import Save</button>
+            </div>
+            <div class="setting">
+                <button onclick="resetGame()" class="danger">Hard Reset</button>
+            </div>
+        </div>
+
+        <div class="notifications" id="notifications"></div>
     </div>
+
     <script src="game.js"></script>
 </body>
 </html>
