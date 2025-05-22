@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Idle Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Idle Clicker Game</h1>
+        <div class="resources">
+            <p>Points: <span id="points">0</span></p>
+            <p>Points per second: <span id="pps">0</span></p>
+        </div>
+        <button id="clicker">Click Me!</button>
+        <div class="upgrades">
+            <h2>Upgrades</h2>
+            <div class="upgrade" id="upgrade1">
+                <p>Auto Clicker (1 pps)</p>
+                <p>Cost: <span id="upgrade1-cost">10</span> points</p>
+                <p>Owned: <span id="upgrade1-owned">0</span></p>
+                <button onclick="buyUpgrade(1)">Buy</button>
+            </div>
+            <div class="upgrade" id="upgrade2">
+                <p>Better Clicker (5 pps)</p>
+                <p>Cost: <span id="upgrade2-cost">50</span> points</p>
+                <p>Owned: <span id="upgrade2-owned">0</span></p>
+                <button onclick="buyUpgrade(2)">Buy</button>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
